@@ -16,7 +16,13 @@ const router = new Router({
 })
 
 router.afterEach((to) => {
-  document.title = to.path.split("/").slice(1).join(" ") + " - アイドルマスターシンデレラガールズ歌唱曲検索"
+  const title = "アイドルマスターシンデレラガールズ歌唱曲検索"
+  if (to.path == "" || to.path == "/") {
+    document.title = title
+  }
+  else {
+    document.title = to.path.split("/").slice(1).join(" ") + " - " + title
+  }
 })
 
 export default router
