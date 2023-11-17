@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import { getDecodedPathItems } from "../utils/path.js"
+
 export default {
   name: "Artist",
   props: {
@@ -16,12 +18,11 @@ export default {
       return this.highlight ? "badge badge-success" : "badge badge-dark"
     },
     to () {
-      const queries = this.$route.path.split("/")
+      const queries = getDecodedPathItems(this.$route.path)
       if (queries.includes(this.artist)) {
-        return this.$route.path.replace(this.artist, "").replace(/\/\//g, "/")
-      }
-      else {
-        return (this.$route.path + '/' + this.artist).replace(/\/\//g, "/")
+        return "/" + queries.filter(q => q !== this.artist).join("/")
+      } else {
+        return "/" + [...queries, this.artist].join("/")
       }
     }
   },
@@ -29,25 +30,6 @@ export default {
 </script>
 
 <style scoped>
-/* .badge {
-  display: inline-block;
-  margin: 2px;
-  text-decoration: none;
-  text-align: center;
-  vertical-align: middle;
-}
-.badge span {
-  color: #FFF;
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 400;
-}
-.default {
-  background-color: #555;
-}
-.highlight {
-  background-color: #099c14;
-} */
 .badge {
   margin-right: 4px;
   padding: 4px;

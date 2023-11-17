@@ -2,24 +2,15 @@
   <div id="songs">
     <table>
       <tbody>
-        <tr v-for="song in songs" :key="key(song)">
+        <tr v-for="song in songs" :key="song.title">
           <th class="title">{{ song.title }}</th>
-          <td class="artists">
+          <td>
             <Artist v-for="artist in song.artists" 
               :artist="artist"
               :key="artist"
               :highlight="includes(selected, artist)"
             />
           </td>
-          <td>{{ song.unit }}</td>
-          <!-- <td>{{ song.original }}</td>
-          <td>{{ song.coverd }}</td>
-          <td>{{ song.game }}</td> -->
-          <!-- <td>
-            <span v-for="actor in song.actors" :key="actor">
-              {{ actor }}
-            </span>
-          </td> -->
         </tr>
       </tbody>
     </table>
@@ -30,7 +21,6 @@
 import Artist from "./Artist.vue"
 
 export default {
-  el: '#songs',
   name: "Songs",
   components: {
     Artist,
@@ -48,10 +38,6 @@ export default {
   methods: {
     includes(arr, elm) {
       return arr.includes(elm)
-    },
-    key(song) {
-      // 青空エール対策
-      return song.title + song.artists[0];
     },
   },
 }
@@ -84,7 +70,5 @@ td, th {
   .title {
     min-width: auto;
   }
-}
-.artists {
 }
 </style>

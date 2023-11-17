@@ -17,54 +17,35 @@
 </template>
 
 <script>
+import { getDecodedPathItems } from "../utils/path.js"
+
 export default {
   name: 'Content',
-  el: '#content',
-  components: {
-    // Setlist
-  },
   data: function () {
     return {
-      input: this.$route.path.slice(1).replace(/\//g, " "),
-      artists: this.$route.path.split("/").filter(s => s != ""),
+      input: getDecodedPathItems(this.$route.path).join(" "),
+      artists: getDecodedPathItems(this.$route.path),
     }
-  },
-  computed: {
-    // artists () {
-    //   return this.input?.split(" ").filter(s => s != "")
-    // },
   },
   watch: {
     input: function () {
-      // console.log("input")
-      // console.log(this.input)
-      // console.log(this.$route.path)
       var path = this.input.replace(/\s+/g, "/")
       if (path[0] != "/") {
         path = "/" + path
       }
-      // console.log(path)
-      this.$router.push(path)
+      // avoid NavigationDuplicated
+      if (decodeURI(this.$route.path) !== path) {
+        this.$router.push(path)
+      }
     },
     $route: function (to) {
-      var a = to.path.replace(/\//g, " ")
-      if (a[0] == " ") {
-        console.log(a)
-        a = a.substring(1)
-      }
-      // console.log("route")
-      // console.log(a)
-      // console.log(this.input)
-      // console.log(this.$route.path)
-      this.input = a
-      this.artists = this.input?.split(" ").filter(s => s != "")
-      // console.log(this.artists)
+      this.input = getDecodedPathItems(to.path).join(" ")
+      this.artists = getDecodedPathItems(to.path)
     },
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #content {
   width: 70%;
