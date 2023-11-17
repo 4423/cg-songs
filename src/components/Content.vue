@@ -1,18 +1,18 @@
 <template>
   <div id="content">
     <router-link to="/" class="title">
-      <h1>アイドルマスターシンデレラガールズ<br>歌唱曲検索</h1>
+      <h1>アイドルマスターシンデレラガールズ<br />歌唱曲検索</h1>
     </router-link>
     <div class="form-group has-search">
       <b-icon-search class="fa fa-search form-control-feedback"></b-icon-search>
       <input
         type="text"
-        class="form-control" 
+        class="form-control"
         placeholder="例）渋谷凛 北条加蓮 神谷奈緒"
         v-model="input"
-      >
+      />
     </div>
-    <router-view class="result" :artists="artists"/>
+    <router-view class="result" :artists="artists" />
   </div>
 </template>
 
@@ -20,7 +20,7 @@
 import { getDecodedPathItems } from "../utils/path.js"
 
 export default {
-  name: 'Content',
+  name: "Content",
   data: function () {
     return {
       input: getDecodedPathItems(this.$route.path).join(" "),
@@ -42,7 +42,7 @@ export default {
       this.input = getDecodedPathItems(to.path).join(" ")
       this.artists = getDecodedPathItems(to.path)
     },
-  }
+  },
 }
 </script>
 
@@ -90,7 +90,7 @@ a {
   text-align: center;
   pointer-events: none;
   color: #aaa;
-  margin: .7rem;
+  margin: 0.7rem;
 }
 
 .result {

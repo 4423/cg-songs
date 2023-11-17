@@ -17,14 +17,14 @@ export default {
     className() {
       return this.highlight ? "badge badge-success" : "badge badge-dark"
     },
-    to () {
+    to() {
       const queries = getDecodedPathItems(this.$route.path)
       if (queries.includes(this.artist)) {
-        return "/" + queries.filter(q => q !== this.artist).join("/")
+        return "/" + queries.filter((q) => q !== this.artist).join("/")
       } else {
         return "/" + [...queries, this.artist].join("/")
       }
-    }
+    },
   },
 }
 </script>
@@ -33,7 +33,7 @@ export default {
 .badge {
   margin-right: 4px;
   padding: 4px;
-  font-size: .85em;
+  font-size: 0.85em;
   text-align: center;
   vertical-align: middle;
   font-weight: bold;

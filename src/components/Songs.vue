@@ -5,7 +5,8 @@
         <tr v-for="song in songs" :key="song.title">
           <th class="title">{{ song.title }}</th>
           <td>
-            <Artist v-for="artist in song.artists" 
+            <Artist
+              v-for="artist in song.artists"
               :artist="artist"
               :key="artist"
               :highlight="includes(selected, artist)"
@@ -56,10 +57,11 @@ tr:first-child {
   border-top: 1px solid #ccc;
 }
 
-td, th {
+td,
+th {
   text-align: left;
   vertical-align: middle;
-  padding: .5em 0;
+  padding: 0.5em 0;
 }
 
 .title {
