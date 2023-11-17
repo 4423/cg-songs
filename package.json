@@ -9,23 +9,23 @@
     "lintfix": "prettier --write --list-different . && npm run lint -- --fix"
   },
   "dependencies": {
-    "axios": "^0.19.2",
-    "bootstrap": "^4.5.0",
-    "bootstrap-vue": "^2.15.0",
-    "vue": "^2.6.11",
-    "vue-axios": "^2.1.5",
+    "axios": "^1.6.2",
+    "bootstrap": "^4.6.2",
+    "bootstrap-vue": "^2.23.1",
+    "vue": "^2.7.15",
+    "vue-axios": "^3.5.2",
     "vue-router": "^3.3.4"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.4.0",
+    "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-eslint": "^5.0.8",
-    "@vue/cli-service": "^4.4.0",
+    "@vue/cli-service": "^5.0.8",
     "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-prettier-vue": "^5.0.0",
     "eslint-plugin-vue": "^9.18.1",
     "prettier": "^3.1.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.7.15"
   }
 }
