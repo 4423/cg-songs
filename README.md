@@ -1,4 +1,9 @@
-# app
+# アイドルマスターシンデレラガールズ 歌唱曲検索
+Allow us to search songs of THE IDOLMASTER CINDERELLA GIRLS by character names like `北条加蓮 神谷奈緒`. 
+
+https://cg-songs.vercel.app/
+
+![](./docs/ss.png)
 
 ## Project setup
 ```
