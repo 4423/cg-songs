@@ -5,11 +5,13 @@
       :songs="songs"
       :selected="artists"
     ></Songs>
-    <span v-if="!hasArtists"> キャラクター名を指定してください。 </span>
+    <span v-else-if="!hasArtists"> キャラクター名を入力してください。 </span>
     <span v-else-if="songs == null || songs.length == 0">
       見つかりませんでした。 フルネームで指定していますか？
     </span>
-    <span v-else-if="failedToLoad"> データの読み込みに失敗しました。 </span>
+    <span v-else-if="failedToLoad">
+      データの読み込みに失敗しました。再度時間を置いて試してください。
+    </span>
   </div>
 </template>
 

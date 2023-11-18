@@ -1,7 +1,7 @@
 <template>
   <div id="content">
     <router-link to="/" class="title">
-      <h1>アイドルマスターシンデレラガールズ<br />歌唱曲検索</h1>
+      <h1>アイドルマスターシンデレラガールズ<br />楽曲検索</h1>
     </router-link>
     <div class="form-group has-search">
       <b-icon-search class="fa fa-search form-control-feedback"></b-icon-search>
