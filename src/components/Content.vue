@@ -38,8 +38,8 @@ export default {
       const currentArtists = getDecodedPathItems(this.$route.path)
       // avoid NavigationDuplicated
       if (!equalsInAnyOrder(inputArtists, currentArtists)) {
-        const path = `/${inputArtists.join("/")}`
-        this.$router.push(path)
+        const newPath = `/${inputArtists.join("/")}`
+        this.$router.push({ path: newPath, query: this.$route.query })
       }
     },
     $route: function (to) {

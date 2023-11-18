@@ -1,7 +1,12 @@
 <template>
   <div id="setlist">
     <div v-if="showPartialMatchButton" class="settings">
-      <b-form-checkbox v-model="enablePartialMatch" name="check-button" switch>
+      <b-form-checkbox
+        v-model="enablePartialMatch"
+        name="check-button"
+        switch
+        @change="updateModeQueryParam"
+      >
         部分一致（セトリ予想モード）
       </b-form-checkbox>
     </div>
@@ -25,6 +30,11 @@
 <script>
 import Songs from "./Songs.vue"
 
+// query param で使う mode の値
+const MODE = {
+  SETLIST: "setlist",
+}
+
 export default {
   name: "Setlist",
   props: {
@@ -37,7 +47,7 @@ export default {
     return {
       allSongs: [],
       failedToLoad: false,
-      enablePartialMatch: false,
+      enablePartialMatch: this.$route.query?.mode === MODE.SETLIST,
     }
   },
   computed: {
@@ -88,11 +98,7 @@ export default {
       return songsWithScore.sort((a, b) => {
         if (a.matchedCount === b.matchedCount) {
           if (a.score === b.score) {
-            if (a.artists.length > b.artists.length) {
-              return -1
-            } else if (a.artists.length < b.artists.length) {
-              return 1
-            }
+            return a.artists.length - b.artists.length
           }
           return b.score - a.score
         }
@@ -112,6 +118,17 @@ export default {
       .catch(() => {
         this.failedToLoad = true
       })
+  },
+  methods: {
+    updateModeQueryParam: function () {
+      const q = this.enablePartialMatch ? { mode: MODE.SETLIST } : {}
+      this.$router.push({ path: this.$route.path, query: q })
+    },
+  },
+  watch: {
+    $route: function (to) {
+      this.enablePartialMatch = to.query?.mode === MODE.SETLIST
+    },
   },
 }
 </script>

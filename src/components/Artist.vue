@@ -1,7 +1,7 @@
 <template>
-  <router-link :class="className" :to="to">
+  <a :class="className" @click="navigate">
     {{ artist }}
-  </router-link>
+  </a>
 </template>
 
 <script>
@@ -17,13 +17,16 @@ export default {
     className() {
       return this.highlight ? "badge badge-success" : "badge badge-dark"
     },
-    to() {
-      const queries = getDecodedPathItems(this.$route.path)
-      if (queries.includes(this.artist)) {
-        return "/" + queries.filter((q) => q !== this.artist).join("/")
-      } else {
-        return "/" + [...queries, this.artist].join("/")
-      }
+  },
+  methods: {
+    navigate: function () {
+      const artists = getDecodedPathItems(this.$route.path)
+      const newArtists = artists.includes(this.artist)
+        ? artists.filter((q) => q !== this.artist)
+        : [...artists, this.artist]
+      const newPath = `/${newArtists.join("/")}`
+      // query は変えない
+      this.$router.push({ path: newPath, query: this.$route.query })
     },
   },
 }
@@ -43,5 +46,8 @@ export default {
 }
 .badge-dark {
   background-color: #555555;
+}
+a {
+  cursor: pointer;
 }
 </style>
