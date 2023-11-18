@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { equalsInAnyOrder } from "../utils/array.js"
 import { getDecodedPathItems } from "../utils/path.js"
 
 export default {
@@ -24,23 +25,25 @@ export default {
   data: function () {
     return {
       input: getDecodedPathItems(this.$route.path).join(" "),
-      artists: getDecodedPathItems(this.$route.path),
     }
+  },
+  computed: {
+    artists: function () {
+      return getDecodedPathItems(this.$route.path)
+    },
   },
   watch: {
     input: function () {
-      var path = this.input.replace(/\s+/g, "/")
-      if (path[0] != "/") {
-        path = "/" + path
-      }
+      const inputArtists = getDecodedPathItems(this.input.replace(/\s+/g, "/"))
+      const currentArtists = getDecodedPathItems(this.$route.path)
       // avoid NavigationDuplicated
-      if (decodeURI(this.$route.path) !== path) {
+      if (!equalsInAnyOrder(inputArtists, currentArtists)) {
+        const path = `/${inputArtists.join("/")}`
         this.$router.push(path)
       }
     },
     $route: function (to) {
       this.input = getDecodedPathItems(to.path).join(" ")
-      this.artists = getDecodedPathItems(to.path)
     },
   },
 }
