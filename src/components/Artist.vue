@@ -36,6 +36,7 @@ export default {
 .badge {
   margin-right: 4px;
   padding: 4px;
+  font-family: "LINESeedJP_OTF_Bd";
   font-size: 0.85em;
   text-align: center;
   vertical-align: middle;
