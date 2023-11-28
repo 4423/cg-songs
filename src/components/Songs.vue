@@ -66,9 +66,7 @@ th {
 
 .title {
   min-width: 200px;
-  padding-right: 1em;
-  font-size: 0.95em;
-  font-weight: bold;
+  margin-right: 1em;
 }
 @media screen and (max-width: 600px) {
   .title {
